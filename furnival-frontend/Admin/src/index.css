@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.link:hover svg path {
+  fill: white;
+  stroke: none;
+}
+
+.link:hover svg path.setting {
+  stroke: white;
+  fill: none;
+}

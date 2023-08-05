@@ -5,7 +5,7 @@ import Header from '../components/Header';
 const RootLayout = () => {
   return (
     <div className='flex'>
-      <nav className="w-[312px]">
+      <nav className="w-[312px] bg-normalGray h-screen">
         <Sidebar />
       </nav>
       <div className='w-full'>
