@@ -1,6 +1,4 @@
 {
   "singleQuote": true,
-  "jsxSingleQuote": false,
-  "singleAttributePerLine": false,
-  "printWidth": 1000
+  "jsxSingleQuote": false
 }
