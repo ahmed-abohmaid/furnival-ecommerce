@@ -11,3 +11,13 @@
   stroke: white;
   fill: none;
 }
+
+.link.active svg path {
+  fill: white;
+  stroke: none;
+}
+
+.link.active svg path.setting {
+  stroke: white;
+  fill: none;
+}
