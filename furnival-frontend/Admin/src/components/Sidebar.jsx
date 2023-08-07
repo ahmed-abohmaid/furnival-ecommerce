@@ -3,6 +3,7 @@ import logo from '../assets/furniture.webp';
 import dropdown from '../assets/icons/dropdown.svg';
 import { navELements } from '../utils/getNavElements';
 import { useState } from 'react';
+import { Collapse, ListItemButton } from '@mui/material';
 
 const Sidebar = () => {
   const [showListMap, setShowListMap] = useState({});
@@ -22,12 +23,30 @@ const Sidebar = () => {
       <div className="flex flex-col gap-5">
         {navELements.map((ele) =>
           ele.children ? (
-            <div key={ele.id} className="relative">
-              <div
+            <div key={ele.id}>
+              <ListItemButton
                 className={`link flex items-center gap-4 px-5 py-[8px] text-darkGray2 capitalize duration-100 hover:bg-mainBlue hover:text-white text-[15px] cursor-pointer ${
-                  showListMap[ele.id] && 'bg-mainBlue text-white active'
+                  showListMap[ele.id] && 'bg-mainBlue text-white'
                 }`}
                 onClick={() => toggleList(ele.id)}
+                selected={showListMap[ele.id]}
+                sx={{
+                  '&.MuiButtonBase-root': {
+                    color: '#939393',
+                  },
+                  '&.Mui-selected': {
+                    backgroundColor: '#133A5E',
+                    color: 'white',
+                  },
+                  '&.Mui-selected:hover': {
+                    backgroundColor: '#133A5E',
+                    color: 'white',
+                  },
+                  ':hover': {
+                    backgroundColor: '#133A5E',
+                    color: 'white',
+                  },
+                }}
               >
                 {ele.icon}
                 {ele.title}
@@ -38,21 +57,24 @@ const Sidebar = () => {
                     className="block ml-auto"
                   />
                 )}
-              </div>
-              <ul
-                className={`text-[15px] text-darkGray2 duration-[1s] origin-top ${
-                  showListMap[ele.id] ? 'block' : 'hidden'
-                }`}
+              </ListItemButton>
+              <Collapse
+                in={showListMap[ele.id]}
+                timeout="auto"
+                unmountOnExit
+                className="text-[15px] text-darkGray2"
               >
                 {ele.children.map((list) => (
-                  <li
+                  <Link
                     key={list.id}
-                    className="cursor-pointer pl-[50px] py-[8px] duration-75 hover:bg-mainOrange hover:text-white capitalize"
+                    to={list.path}
+                    className="cursor-pointer block pl-[40px] py-[8px] duration-75 hover:bg-mainOrange hover:text-white capitalize"
                   >
-                    <Link to={list.path}>&#8226; {list.title}</Link>
-                  </li>
+                    <span className="font-bold mr-2 text-lg">&#8226;</span>{' '}
+                    {list.title}
+                  </Link>
                 ))}
-              </ul>
+              </Collapse>
             </div>
           ) : (
             <Link
